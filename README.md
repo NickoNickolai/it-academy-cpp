@@ -15,3 +15,21 @@
 ## factorial
 
 Вычисление факториала 5 в типах int и float в зависимости от директивы препроцессора.
+
+## sysinfo
+
+Получение информации об ОС и компиляторе.
+
+*Проверены ОС:*
+- Microsoft Windows 10
+- Linux Ubuntu 20.04
+- Linux OpenSUSE 15.5
+- FreeBSD 14.1
+- Haiku R1
+
+*Проверены компиляторы:*
+- GNU GCC
+- Clang
+- MSVC
+- Borland
+- NVCC
