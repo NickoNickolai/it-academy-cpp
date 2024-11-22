@@ -33,3 +33,9 @@
 - MSVC
 - Borland
 - NVCC
+
+# Module 3
+
+## tablemult
+
+Вывод в консоль таблицы умножения задаваемой размерности с помощью циклов for, while, do-while.
