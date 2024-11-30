@@ -21,6 +21,9 @@ public:
 
     // Получение названия фигуры по её типу
     static std::string get_name(Shape shape);
+
+    // Получение типа фигуры по её имени
+    static Shape get_shape(const std::string &name);
 };
 }
 

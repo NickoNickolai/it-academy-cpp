@@ -24,4 +24,24 @@ std::string Handler::get_name(Shape shape)
     }
 }
 
+Shape Handler::get_shape(const std::string &name)
+{
+    if(name == "circle")
+    {
+        return Shape::CIRCLE;
+    }
+    else if(name == "square")
+    {
+        return Shape::SQUARE;
+    }
+    else if(name == "triangle")
+    {
+        return Shape::TRIANGLE;
+    }
+    else
+    {
+        return Shape::UNKNOWN;
+    }
+}
+
 }
