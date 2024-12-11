@@ -18,6 +18,10 @@ void Printer::print(const std::string &value)
 
 void Printer::print(char *value, int n)
 {
+    if(!value)
+    {
+        return;
+    }
     std::cout << "char[" << n << "]: ";
     for(int i = 0; i < n; ++i)
     {
@@ -28,6 +32,10 @@ void Printer::print(char *value, int n)
 
 void Printer::print(int *value, int n)
 {
+    if(!value)
+    {
+        return;
+    }
     std::cout << "int[" << n << "]: ";
     for(int i = 0; i < n; ++i)
     {
@@ -48,10 +56,18 @@ void Printer::print(const std::vector<int> &value)
 
 void Printer::print(std::shared_ptr<int> value)
 {
+    if(!value)
+    {
+        return;
+    }
     std::cout << "shared_ptr<int>: " << *value << std::endl;
 }
 
 void Printer::print(std::unique_ptr<double> &value)
 {
+    if(!value)
+    {
+        return;
+    }
     std::cout << "unique_ptr<double>: " << *value << std::endl;
 }

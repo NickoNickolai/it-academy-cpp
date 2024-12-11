@@ -3,6 +3,11 @@
 
 void UniqueArray::fill(std::unique_ptr<int[]> &arr, int n)
 {
+    if(!arr)
+    {
+        std::cout << "Invalid array storage" << std::endl;
+        return;
+    }
     std::cout << "Enter " << n << " integers: ";
     for(int i = 0; i < n; ++i)
     {
@@ -12,6 +17,10 @@ void UniqueArray::fill(std::unique_ptr<int[]> &arr, int n)
 
 void UniqueArray::print(std::unique_ptr<int[]> &arr, int n)
 {
+    if(!arr)
+    {
+        return;
+    }
     for(int i = 0; i < n; ++i)
     {
         std::cout << arr[i] << ' ';
