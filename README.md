@@ -83,3 +83,31 @@
 ## smartarray
 
 Работа с массивом через smart-pointer - поиск min и max значений.
+
+# Module 7
+
+## uniquearray
+
+Работа с массивом через `unique_ptr`:
+- заполнение
+- вывод в консоль
+
+## sharedarray
+
+Работа с массивом через `shared_ptr`/`weak_ptr`:
+- заполнение
+- вывод в консоль
+- вычисление суммы всех элементов
+- поиск min и max значений
+
+## funoverload
+
+Перегрузка ф-ции `print()` для типов:
+- `int`
+- `float`
+- `std::string`
+- `char*` *(массив)*
+- `int*` *(массив)*
+- `std::vector<int>`
+- `std::shared_ptr<int>`
+- `std::unique_ptr<double>`
