@@ -111,3 +111,9 @@
 - `std::vector<int>`
 - `std::shared_ptr<int>`
 - `std::unique_ptr<double>`
+
+# Module 8
+
+## book
+
+Класс, описывающий книгу.
