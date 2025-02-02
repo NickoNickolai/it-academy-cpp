@@ -5,6 +5,8 @@ CONFIG -= qt
 
 DESTDIR = ../build
 
+#DEFINES += USE_OPS_ARRAY
+
 INCLUDEPATH += include
 
 SOURCES += \

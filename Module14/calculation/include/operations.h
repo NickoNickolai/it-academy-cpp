@@ -1,10 +1,12 @@
 #ifndef OPERATIONS_H
 #define OPERATIONS_H
 
-#if _MSC_VER
+#ifdef _MSC_VER
 #define _USE_MATH_DEFINES
-#endif
+#include <math.h>
+#else
 #include <cmath>
+#endif
 #include <functional>
 #include <stdexcept>
 #include "exceptions.h"
@@ -12,7 +14,7 @@
 namespace ops
 {
 // Операция деления
-std::function<double(double, double)> div = [](double a, double b)
+inline std::function<double(double, double)> div = [](double a, double b)
 {
     if(b == 0)
     {
@@ -22,7 +24,7 @@ std::function<double(double, double)> div = [](double a, double b)
 };
 
 // Операция извлечения квадратного корня
-std::function<double(double)> sqrt = [](double a)
+inline std::function<double(double)> sqrt = [](double a)
 {
     if(a < 0)
     {
@@ -32,7 +34,7 @@ std::function<double(double)> sqrt = [](double a)
 };
 
 // Операция вычисления логарифма
-std::function<double(double)> log = [](double a)
+inline std::function<double(double)> log = [](double a)
 {
     if(a < 0)
     {
@@ -42,7 +44,7 @@ std::function<double(double)> log = [](double a)
 };
 
 // Операция вычисления площади круга
-std::function<double(double)> sqrCirc = [](double r)
+inline std::function<double(double)> sqrCirc = [](double r)
 {
     if(r < 0)
     {

@@ -1,6 +1,3 @@
-#if _MSC_VER
-#define _USE_MATH_DEFINES
-#endif
 #include <iostream>
 #include <functional>
 #include "operations.h"
@@ -21,24 +18,24 @@ int main()
     }
     {
         double a = 2.7;
-        double result = Calculation::calculate(a, ops::log);
+        double result = Calculation::calculate(a, OperationType::LOG);
         std::cout << "log(" << a << ") = " << result << std::endl;
     }
     {
         double r = 1;
-        double result = Calculation::calculate(r, ops::sqrCirc);
+        double result = Calculation::calculate(r, OperationType::SQR_CIRC);
         std::cout << "sqrCirc(" << r << ") = " << result << std::endl;
     }
 
     std::cout << "--> Operations with exceptions:" << std::endl;
     {
         double a = 2, b = 0;
-        double result = Calculation::calculate(a, b, ops::div);
+        double result = Calculation::calculate(a, b, OperationType::DIV);
         std::cout << a << "/" << b << " = " << result << std::endl;
     }
     {
         double a = -16;
-        double result = Calculation::calculate(a, ops::sqrt);
+        double result = Calculation::calculate(a, OperationType::SQRT);
         std::cout << "sqrt(" << a << ") = " << result << std::endl;
     }
     {
@@ -50,6 +47,11 @@ int main()
         double r = -1;
         double result = Calculation::calculate(r, ops::sqrCirc);
         std::cout << "sqrCirc(" << r << ") = " << result << std::endl;
+    }
+    {
+        double a = 2, b = 7;
+        Calculation::calculate(a, OperationType::DIV);
+        Calculation::calculate(a, b, OperationType::SQRT);
     }
 
     return 0;
