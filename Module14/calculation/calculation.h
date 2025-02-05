@@ -1,10 +1,10 @@
 #ifndef CALCULATION_H
 #define CALCULATION_H
 
-#include <functional>
 #ifdef USE_OPS_ARRAY
-#include "operations.h"
+#include <variant>
 #endif
+#include "operations.h"
 
 enum class OperationType
 {
@@ -12,26 +12,24 @@ enum class OperationType
     DIV,
     SQRT,
     LOG,
-    SQR_CIRC,
-
-    SIZE
+    SQR_CIRC
 };
 
 class Calculation
 {
 public:
-    static double calculate(double a, std::function<double(double)> op);
-    static double calculate(double a, double b, std::function<double(double, double)> op);
+    static double calculate(double a, ops::unary_t op);
+    static double calculate(double a, double b, ops::binary_t op);
     static double calculate(double a, OperationType opType);
     static double calculate(double a, double b, OperationType opType);
 #ifdef USE_OPS_ARRAY
 private:
-    static inline void *_ops[static_cast<int>(OperationType::SIZE)] =
+    static inline std::variant<ops::unary_t, ops::binary_t> _ops[] =
     {
-        static_cast<void *>(&ops::div),
-        static_cast<void *>(&ops::sqrt),
-        static_cast<void *>(&ops::log),
-        static_cast<void *>(&ops::sqrCirc)
+        ops::div,
+        ops::sqrt,
+        ops::log,
+        ops::sqrCirc
     };
 #endif
 };

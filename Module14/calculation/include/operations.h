@@ -13,8 +13,11 @@
 
 namespace ops
 {
+using unary_t = std::function<double(double)>;
+using binary_t = std::function<double(double, double)>;
+
 // Операция деления
-inline std::function<double(double, double)> div = [](double a, double b)
+inline binary_t div = [](double a, double b)
 {
     if(b == 0)
     {
@@ -24,7 +27,7 @@ inline std::function<double(double, double)> div = [](double a, double b)
 };
 
 // Операция извлечения квадратного корня
-inline std::function<double(double)> sqrt = [](double a)
+inline unary_t sqrt = [](double a)
 {
     if(a < 0)
     {
@@ -34,7 +37,7 @@ inline std::function<double(double)> sqrt = [](double a)
 };
 
 // Операция вычисления логарифма
-inline std::function<double(double)> log = [](double a)
+inline unary_t log = [](double a)
 {
     if(a < 0)
     {
@@ -44,7 +47,7 @@ inline std::function<double(double)> log = [](double a)
 };
 
 // Операция вычисления площади круга
-inline std::function<double(double)> sqrCirc = [](double r)
+inline unary_t sqrCirc = [](double r)
 {
     if(r < 0)
     {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <functional>
 #include "operations.h"
 #include "calculation.h"
 

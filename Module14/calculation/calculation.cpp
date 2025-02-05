@@ -1,9 +1,8 @@
 #include "calculation.h"
 #include <iostream>
 #include "exceptions.h"
-#include "operations.h"
 
-double Calculation::calculate(double a, std::function<double(double)> op)
+double Calculation::calculate(double a, ops::unary_t op)
 {
     try
     {
@@ -24,7 +23,7 @@ double Calculation::calculate(double a, std::function<double(double)> op)
     return NAN;
 }
 
-double Calculation::calculate(double a, double b, std::function<double(double, double)> op)
+double Calculation::calculate(double a, double b, ops::binary_t op)
 {
     try
     {
@@ -49,7 +48,7 @@ double Calculation::calculate(double a, OperationType opType)
         case OperationType::SQR_CIRC:
         {
             auto index = static_cast<int>(opType);
-            auto op = *static_cast<std::function<double(double)> *>(_ops[index]);
+            auto op = std::get<ops::unary_t>(_ops[index]);
             return op(a);
             break;
         }
@@ -98,7 +97,7 @@ double Calculation::calculate(double a, double b, OperationType opType)
         case OperationType::DIV:
         {
             auto index = static_cast<int>(opType);
-            auto op = *static_cast<std::function<double(double, double)> *>(_ops[index]);
+            auto op = std::get<ops::binary_t>(_ops[index]);
             return op(a, b);
         }
 #else
