@@ -4,12 +4,14 @@
 #include <QObject>
 #include <vector>
 #include "player.h"
+#include "tcpserver.h"
 
 class Pool : public QObject
 {
     Q_OBJECT
 public:
     Pool();
+    ~Pool();
 
     // Добавление игрока
     void addPlayer(PlayerType type, const std::string &name);
@@ -49,6 +51,12 @@ public slots:
     // Удаление карты из кэша
     void slotPopFuture();
 
+    // Слот отправки сетевого сообщения клиенту
+    void slotSendNetworkData(QByteArray data);
+
+    // Слот получения сетевого сообщения от клиента
+    void slotRecvNetworkData(QByteArray data);
+
 signals:
     // Запрос карты из колоды
     void signalRequestCard(int n);
@@ -59,10 +67,14 @@ signals:
     // Выдача отмены карты в игру
     void signalSendNope(bool nope);
 
+    // Передача карты другому игроку по требованию
+    void signalSendFavor(Card card);
+
 private:
     std::vector<Player *> _players;
     int _currPlayerIndex;
     Player *_winner;
+    TcpServer *_server;
 };
 
 #endif // POOL_H

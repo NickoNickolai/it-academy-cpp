@@ -11,7 +11,7 @@ public:
 public slots:
     void reqCard(PlayerState state) override;
     void reqNope(PlayerState state) override;
-    Card favorCard() override;
+    void reqFavor() override;
 };
 
 #endif // HUMAN_H

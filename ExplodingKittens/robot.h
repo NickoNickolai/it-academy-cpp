@@ -13,7 +13,7 @@ public:
 public slots:
     void reqCard(PlayerState state) override;
     void reqNope(PlayerState state) override;
-    Card favorCard() override;
+    void reqFavor() override;
 
 private:
     static inline int _uid = 0;

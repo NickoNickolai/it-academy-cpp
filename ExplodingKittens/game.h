@@ -2,7 +2,9 @@
 #define GAME_H
 
 #include <QObject>
+#include <QEventLoop>
 #include <vector>
+#include <queue>
 #include "player.h"
 #include "deck.h"
 #include "pool.h"
@@ -11,12 +13,14 @@
 enum class Event
 {
     UNKNOWN,
-    REQ_PLAYER_CARD  = 1,
-    REQ_NOPE_CARD    = 2,
-    REQ_DECK_CARD    = 3,
-    RECV_PLAYER_CARD = 4,
-    RECV_NOPE_CARD   = 5,
-    RECV_DECK_CARD   = 6
+    REQUEST_PLAY_CARD,
+    RECEIVE_PLAY_CARD,
+    REQUSET_NOPE_CARD,
+    RECEIVE_NOPE_CARD,
+    REQUEST_DECK_CARD,
+    RECEIVE_DECK_CARD,
+    REQUEST_FAVOR_CARD,
+    RECEIVE_FAVOR_CARD
 };
 
 class Game : public QObject
@@ -31,16 +35,22 @@ public:
     // Инициализация новой игры
     void newGame();
 
+    // Старт игры
+    void start();
+
 signals:
     // Сигнал о необходимости удаления карты из кэша
     void signalPopFuture();
+
+    // Сигнал отправки игрового сообщения игроку-клиенту
+    void signalGameMessage(std::string message);
 
 private:
     // Инициализация всех состояний для новой игры
     void init();
 
-    // Обработка произошедшего события игры
-    void processEvent(Event event);
+    // Добавление игрового события в очередь событий
+    void addEvent(Event event);
 
     // Обработка карты от игрока при взрыве
     void processPlayerInExplodeState();
@@ -62,8 +72,12 @@ private:
     Pool _pool;
     Card _plrCard;
     Card _dckCard;
+    Card _favCard;
     bool _nopeState;
     PlayerState _state;
+    std::queue<Event> _events;
+    QEventLoop _loop;
+    bool _isRunning;
 };
 
 #endif // GAME_H

@@ -67,7 +67,7 @@ void Human::reqNope(PlayerState)
     emit signalSendNope(false);
 }
 
-Card Human::favorCard()
+void Human::reqFavor()
 {
     auto card = Card(CardType::PASS);
     if(!_hand.empty())
@@ -91,5 +91,5 @@ Card Human::favorCard()
         }
         while(std::cin >> n);
     }
-    return card;
+    emit signalSendFavor(card);
 }

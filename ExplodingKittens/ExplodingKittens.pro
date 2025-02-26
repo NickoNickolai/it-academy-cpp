@@ -1,4 +1,5 @@
 QT -= gui
+QT += core network
 
 CONFIG += console
 CONFIG -= app_bundle
@@ -10,6 +11,9 @@ DESTDIR = ../build
 
 #DEFINES += USE_DEBUG
 #DEFINES += USE_VERBOSE_DEBUG
+DEFINES += PORT_SRV=12345
+
+INCLUDEPATH += network
 
 SOURCES += \
     card.cpp \
@@ -18,9 +22,14 @@ SOURCES += \
     human.cpp \
     logger.cpp \
     main.cpp \
+    network/tcpclient.cpp \
+    network/tcpserver.cpp \
     player.cpp \
     pool.cpp \
-    robot.cpp
+    remotegame.cpp \
+    remoteplayer.cpp \
+    robot.cpp \
+    settings.cpp
 
 HEADERS += \
     card.h \
@@ -28,6 +37,12 @@ HEADERS += \
     game.h \
     human.h \
     logger.h \
+    netstructs.h \
+    network/tcpclient.h \
+    network/tcpserver.h \
     player.h \
     pool.h \
-    robot.h
+    remotegame.h \
+    remoteplayer.h \
+    robot.h \
+    settings.h

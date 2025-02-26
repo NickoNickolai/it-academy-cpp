@@ -24,7 +24,8 @@ enum class PlayerType
 {
     UNKNOWN,
     ROBOT,
-    HUMAN
+    HUMAN,
+    REMOTE_PLAYER
 };
 
 class Player : public QObject
@@ -35,7 +36,7 @@ public:
     virtual ~Player() = default;
 
     // Добавление карты в руку
-    void addCard(Card card);
+    virtual void addCard(Card card);
 
     // Удаление карт у игрока
     void clearHand() { _hand.clear(); }
@@ -65,6 +66,12 @@ signals:
     // Выдача отмены карты в игру
     void signalSendNope(bool nope);
 
+    // Передача карты другому игроку по требованию
+    void signalSendFavor(Card card);
+
+    // Сигнал на отправку пакета по сети
+    void signalSendNetworkData(QByteArray data);
+
 public slots:
     // При поступлении запроса карты
     virtual void reqCard(PlayerState state) = 0;
@@ -73,16 +80,16 @@ public slots:
     virtual void reqNope(PlayerState state) = 0;
 
     // Выдача карты по требованию другого игрока
-    virtual Card favorCard() = 0;
+    virtual void reqFavor() = 0;
 
     // Добавление карты в кэш
-    void addFuture(const Card &card);
+    virtual void addFuture(const Card &card);
 
     // Удаление карты из кэша
-    void popFuture();
+    virtual void popFuture();
 
     // Сброс кэша
-    void resetFuture();
+    virtual void resetFuture();
 
 protected:
     bool _valid;

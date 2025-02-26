@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <thread>
 
-#define DELAY 150
+#define DELAY 250
 
 Robot::Robot()
     : Robot(std::string("Robot-") + std::to_string(_uid + 1))
@@ -121,13 +121,14 @@ void Robot::reqNope(PlayerState state)
     emit signalSendNope(false);
 }
 
-Card Robot::favorCard()
+void Robot::reqFavor()
 {
     if(_hand.empty())
     {
-        return Card(CardType::PASS);
+        emit signalSendFavor(Card(CardType::PASS));
+        return;
     }
     auto card = _hand.back();
     _hand.pop_back();
-    return card;
+    emit signalSendFavor(card);
 }
